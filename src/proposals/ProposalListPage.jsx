@@ -12,6 +12,7 @@ export const ProposalListPage = () => {
 
     useEffect(() => {
         getProposalList().then(proposals => {
+            setIsLoading(false)
             setProposals(proposals);
         });
     }, []);
@@ -27,10 +28,10 @@ export const ProposalListPage = () => {
 
     return (
         <Page title="Call for Papers">
-            <Loading/>
+            {isLoading && <Loading/>}
             <ProposalList
                 proposals={proposals}
-                onProposalStatusUpdate={() => {}}
+                onProposalStatusUpdate={updateProposalStatus}
             />
         </Page>
     );
